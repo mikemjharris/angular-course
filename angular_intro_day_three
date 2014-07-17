@@ -1,0 +1,37 @@
+Link angualr into a database.
+
+Need to do rails scaffold and build simple api.
+
+Do we build an app with the class quickly or provide a seed app?  Should be pretty quick but need to practice.
+
+Link into angualar.
+
+
+rails new rails_angular
+cd rails_angular
+rails g scaffold Meal name:text price:float description:text 
+
+rake db:migrate
+
+we now have a working api!  Hurrah.  Let's see how we can interact with the server.
+
+The controllers need additonal functionality from the angular database.  The module we want is called $http.  To inlclude it in the controller we do the following. 
+
+ 
+app.controller('MarketController', ['$http', function($http){
+....
+
+we also need to add a square bracket at the end:
+ }]);
+
+when we first go to the app we want meals to be set to an empty array until we receive data from the database.
+
+this.meals = [];
+
+We also need to define "this" as it will change within the get request.
+
+$http.get('http://localhost3000/meals.json').success(function(data){
+  this.meals
+
+})
+

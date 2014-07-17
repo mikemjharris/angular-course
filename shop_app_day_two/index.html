@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html ng-app="food">
+<head>
+  <title>Angular Lunch App</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script type="text/javascript" src="JS/angular.min.js"></script>
+  <script type="text/javascript" src="JS/app.js"></script>
+</head>
+<body>
+  <h1>Angular Lunch App</h1>
+<!-- 
+  <p>{{ 4 + 7 }}</p>
+  <p>{{ "hello" + " WDI" }}</p>
+  <p>Hello has  {{"hello".length }} letters</p>
+
+
+<div ng-click="basket = basket + 1">Click to add to basket</div>
+
+<div>Your basket has {{ basket }} items in it</div>
+<div>Using basket somewhere else: {{basket}}</div>
+
+ -->
+
+<div ng-controller="MarketController as market">
+  <section>
+    <ul>
+    <h2 ng-class="">Lunch Options</h2>
+    <li ng-repeat="meal in market.meals" ng-click="market.selectMeal(meal)">
+      <span ng-class="{highlighted: meal === market.selectedMeal }">{{ meal.name}} :  £{{meal.price}}</span>
+    </li>
+    <li ng-show="market.new_meal" ng-click="market.selectMeal(new_meal)">
+      <span ng-class="{highlighted: market.new_meal === market.selectedMeal }">{{ market.new_meal.name}} :  £{{market.new_meal.price}}</span>
+    </li>
+    </ul>
+
+    <h3>Add an item</h3>
+
+    
+    <form name="mealForm" ng-submit="mealForm.$valid && market.addMeal(new_meal)" novalidate>
+      Name<input type="text" ng-model="market.new_meal.name" required /><br>
+      Price<input type="number" ng-model="market.new_meal.price" min="1" max="10" required /><br>
+      Description<textarea ng-model="market.new_meal.description"></textarea><br>
+      <input type="Submit">
+      <div>mealForm is {{mealForm.$valid}}</div>
+    </form>
+  </section>
+
+  <div ng-show="market.selectedMeal">
+    <h2>Selected meal details</h2>
+    <p>{{ market.selectedMeal.name }}</p>
+    <p>{{ market.selectedMeal.description }}</p>
+    <p>{{ market.selectedMeal.price }}</p>
+  </div>
+
+  <div ng-hide="market.selectedMeal">
+    <h2 >Leather Lane</h2>
+    <p>Leather lane is an awesome market in leather lane that has a wide variety of lucnh options.  Select an option from the left to see more details.</p>
+  </div>
+
+
+</div>
+
+</body>
+</html>
