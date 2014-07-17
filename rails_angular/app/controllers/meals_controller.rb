@@ -9,6 +9,7 @@ class MealsController < ApplicationController
       format.json { render json: @meals }
     end
   end
+  
 
   # GET /meals/1
   # GET /meals/1.json
@@ -41,7 +42,7 @@ class MealsController < ApplicationController
   # POST /meals.json
   def create
     @meal = Meal.new(params[:meal])
-
+    
     respond_to do |format|
       if @meal.save
         format.html { redirect_to @meal, notice: 'Meal was successfully created.' }

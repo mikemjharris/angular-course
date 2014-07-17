@@ -5,7 +5,13 @@
   app.controller('MarketController', ['$http', function($http){
     var market = this
 
-    this.meals = meals;
+    this.meals = [];
+    $http.get('http://localhost:3000/meals.json').success(function(data){
+        market.meals = data
+    })
+
+
+    
 
     this.selectMeal = function(meal) {
       this.selectedMeal = meal;
@@ -14,6 +20,9 @@
     this.addMeal = function() {
       meals.push(this.new_meal)
       this.new_meal = {}
+      
+
+
     }
   }]);
 

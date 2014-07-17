@@ -1,3 +1,56 @@
 // Place all the styles related to the Meals controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+}
+
+section {
+  width: 400px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px;
+  border: 1px solid black;
+}
+
+ul {
+  padding: 0px;
+  /*margin: 10px;*/
+  
+  /*width: 400px;*/
+  display: inline-block;
+  vertical-align: top;
+}
+
+li {
+  list-style: none;
+  margin: 5px;
+  cursor: pointer; 
+}
+
+div div {
+  width: 400px;
+  margin: 10px;
+  border: 1px solid black;
+  display: inline-block;
+  padding: 10px;
+}
+
+.test {
+  color: red;
+}
+.highlighted {
+  background: red;
+}
+
+.ng-valid.ng-dirty {
+  border: 1px solid green;
+}
+.ng-invalid.ng-dirty {
+  border: 1px solid red;
+}

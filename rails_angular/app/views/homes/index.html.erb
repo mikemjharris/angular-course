@@ -1,15 +1,8 @@
-<!DOCTYPE html>
+ <article ng-app="food">
 
-<html ng-app="food">
-<head>
-  <title>Angular Lunch App</title>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <script type="text/javascript" src="JS/angular.min.js"></script>
-  <script type="text/javascript" src="JS/app.js"></script>
-</head>
-<body>
-  <h1>Angular Lunch App</h1>
+
+
+ <h1>Angular Lunch App</h1>
 <!-- 
   <p>{{ 4 + 7 }}</p>
   <p>{{ "hello" + " WDI" }}</p>
@@ -28,7 +21,7 @@
     <ul>
     <h2 ng-class="">Lunch Options</h2>
     <li ng-repeat="meal in market.meals" ng-click="market.selectMeal(meal)">
-      <span ng-class="{highlighted: meal === market.selectedMeal }">{{ meal.name}} :  £{{meal.price}} </span>
+      <span ng-class="{highlighted: meal === market.selectedMeal }">{{ meal.name}} :  £{{meal.price}} {{meal.id}}</span>
     </li>
     <li ng-show="market.new_meal" ng-click="market.selectMeal(new_meal)">
       <span ng-class="{highlighted: market.new_meal === market.selectedMeal }">{{ market.new_meal.name}} :  £{{market.new_meal.price}} </span>
@@ -61,6 +54,4 @@
 
 
 </div>
-
-</body>
-</html>
+</article>
