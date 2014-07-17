@@ -79,6 +79,13 @@ maybe we want to check if the submissions was successful or not:
         market.new_meal = {}  
       });
 
-LAB:  Add delete and edit using anguar. 
+LAB:  Add delete and edit using angular. 
 
-Again highight that you can navigate around the page and that there is minimal update.
+Again highight that you can navigate around the page and that there is minimal update. 
+
+
+
+
+
+
+

@@ -1,3 +1,5 @@
+Day two: using forms for validation.  Have split out connecting to a database into day three but I reckon it would fit in at the end of day 1.
+
 
 Next day using forms
 Add a review to each store. 
