@@ -38,6 +38,28 @@ li {
 
 
 
+.order {
+  padding: 5px;
+  display: inline-block;
+  width: 50px;
+  border: 1px solid black;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.basket_button {
+  width: 100px;
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+
+
+
+
+
 ul.selected_menu  {
   border: none;
   width: 350px;

@@ -33,8 +33,15 @@
 
   <div ng-show="market.selectedMeal" class="right_menu">
     <h2>Selected meal details</h2>
-    <p>{{ market.selectedMeal.name }}</p>
-    <p>{{ market.selectedMeal.price }}</p>
+    <p>{{ market.selectedMeal.name }} : £{{ market.selectedMeal.price }}</p>
+    <p>Place your order:
+      <span class="order" ng-click="market.removeMeal()">-</span><span class="order" ng-click="market.addMeal()">+</span>
+      Nos order: {{ market.order}}
+      Cost:  {{ market.order * market.selectedMeal.price }}
+    </p>
+    <p class="basket_button">
+      Add to basket
+    </p>
     <ul class='selected_menu'>
       <li ng-click="market.selectTab(1)" ng-class="{tabselect: market.tab == 1 }">Description</li>
       <li ng-click="market.selectTab(2)" ng-class="{tabselect: market.tab == 2 }">Reviews</li>
@@ -53,6 +60,14 @@
     <h2 >Leather Lane</h2>
     <p>Leather lane is an awesome market in Clerkenwell that has a wide variety of lunch options.  Select an option from the left to see more details.</p>
   </div>
+</div>
+</div>
+<div>
+  Basket
+  <ul>
+    <li ng-repeat="item in market.basket">{{ item }}</li>
+  </uls>
+
 </div>
 
 </body>
