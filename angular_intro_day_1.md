@@ -248,7 +248,7 @@ Different tabs for different products.
 
 LAB/homework - extend what we have done today and add tabs to the right hand menu box. Details, reviews, order.  
 
-On the order page we should be able to use buttons to order a certain amount of a certain food.  Add another box on the screen that has our basket.  When we add meals to our basket they should be listed in the basket tab along with the current total in our basket.
+On the order page we should be able to use buttons to order a certain amount of a certain food.  Add another box on the screen that has our basket.  When we add meals to our basket they should be listed in the basket tab along with the current total value in our basket.
 
 
 

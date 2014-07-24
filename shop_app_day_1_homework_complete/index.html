@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html ng-app="food">
+<head>
+  <title>Angular Lunch App</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script type="text/javascript" src="JS/angular.min.js"></script>
+  <script type="text/javascript" src="JS/app.js"></script>
+</head>
+<body>
+  <h1>Angular Lunch App</h1>
+<!-- 
+  <p>{{ 4 + 7 }}</p>
+  <p>{{ "hello" + " WDI" }}</p>
+  <p>Hello has  {{"hello".length }} letters</p>
+
+
+<div ng-click="basket = basket + 1">Click to add to basket</div>
+
+<div>Your basket has {{ basket }} items in it</div>
+<div>Using basket somewhere else: {{basket}}</div>
+
+ -->
+
+<div ng-controller="MarketController as market">
+  <ul>
+  <h2 ng-class="">Lunch Options</h2>
+    <li ng-repeat="meal in market.meals" ng-click="market.selectMeal(meal)">
+      <span ng-class="{highlighted: meal === market.selectedMeal }">{{ meal.name}} :  £{{meal.price}}</span>
+    </li>
+  </ul>
+
+  <div ng-show="market.selectedMeal" class="right_menu">
+    <h2>Selected meal details</h2>
+    <p>{{ market.selectedMeal.name }}</p>
+    <p>{{ market.selectedMeal.price }}</p>
+    <ul class='selected_menu'>
+      <li ng-click="market.selectTab(1)" ng-class="{tabselect: market.tab == 1 }">Description</li>
+      <li ng-click="market.selectTab(2)" ng-class="{tabselect: market.tab == 2 }">Reviews</li>
+    </ul>
+    <div ng-show="market.tab==1" class="details">
+      {{market.selectedMeal.description}}
+    </div>
+    <div ng-show="market.tab==2" class="details">
+      <div ng-repeat="review in market.selectedMeal.reviews">
+        {{review.comment}}
+      <div>
+    </div>
+  </div>
+
+  <div ng-hide="market.selectedMeal">
+    <h2 >Leather Lane</h2>
+    <p>Leather lane is an awesome market in Clerkenwell that has a wide variety of lunch options.  Select an option from the left to see more details.</p>
+  </div>
+</div>
+
+</body>
+</html>
