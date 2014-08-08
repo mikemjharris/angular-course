@@ -1,195 +1,246 @@
-Angular:
-
+Angular  
+===============
 
 What is Angular?
 Angular is a front end javascript framework.
 
 The main issue with html is that it is desgined for statically built webpages.
 
-Angualar extends the vocabulary of html.  At the same time it is designed to be expressive and readable.
+Angualar extends the vocabulary of html.  At the same time it is designed to be expressive and readable. Unlike jquery where you have to "build" pieces of html in the js file and append them to the page, you can build your site as you wish and rely on Angular's two way data binding to populate your page.
 
 Why do you want to use it?
+---------------
 
 If you want a dynamic website where individiual pieces of the page update without a full html page comming back from the server.
 
-**** examples are gmail,..... 
+Examples are 
+<www.gmail.com>
+<www.diy.com>
 
 Why do we (at GA) use angular?
+-----------------
 
-One of the key advantages of angular is that the layout the html and angular code looks very similair to erb. 
+One of the key advantages of angular is that the layout of the html and angular code looks very similair to erb. 
 
-How:
+How do to get started with angular:
+===============
 
 Let's get started.
 
-Angular is a javascript framework - we need to include a js file just like we did last week with jquery.
-
-https://angularjs.org/
+Angular is a javascript framework - we need to include a js file just like we did in previous weeks with jquery and jquery ui.
 
 Let's create an app.  
+```
+mkdir shop_app  
+cd shop_app  
+mkdir JS  
+mkdir CSS   
+```  
 
-mkdir shop_app 
-cd shop_app
-mkdir JS
-mkdir CSS
 
-move angualr.min.js into the js folder.
+Now let's create the files we need.  
+```
+touch index.html  
+touch JS/app.js  
+touch CSS/app.js  
+subl .  
+```
 
-dowload to JS/angular.min.js
+In index.html HTML tab to generate template for the html.
 
-this is the library but we also need a js file for our code.
+If we go to the angular website we can get the link to angular js file.  
+<https://angularjs.org/>
 
-touch JS/app.js
+If you click on download there is a link to the google servers.  You can download the file and link to it:  
+<https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js>
+ 
+ And link to it in the header of our html. Also let's link to our app.js *after* the angular file.  
+ ```
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>  
+ <script type="text/javascript" src="JS/app.js"></script>
+ ```  
 
-touch index.html
-
-subl .
-
-link to angular.min.js in the head.
-<script type="text/javascript" src="JS/angular.min.js"></script>
-and link to our app.js in the head
-<script type="text/javascript" src="JS/app.js"></script>
-
-open the app.js file.
-
-(function() {
-
-  var app = angular.module('shop', []);
-
+In the app.js file.  
+ ```
+(function() {  
+  var app = angular.module('market', []);  
 })();
+ ```  
 
-when the js runs this sets up an angular module with the name shop.  The square brackets allow you to pass new functionality into the angualr module.  WE wont worry about this now.
+When the js runs this sets up an angular module with the name market.  The square brackets allow you to pass new functionality into the angular module.  We wont worry about this now though!  
 
-We are going to write an app that lists and reviews the food availiable on leather lane.
+We are going to write an app that lists and reviews the food availiable on leather lane.  
 
-We have now included angular, and started the app module. The only thing we need to do next is attach it to our html.  For the apps we will look at we will jsut use one angular module on a page.  Therefore to ensure that this covers out entire document we will call the angualr module called food on the html.  We could jsut constrain it to a small section of our database if we wanted.
+We have now included angular, and started the app module. The only thing we need to do next is attach it to our html.  For the apps we will look at we will just use one angular module on a page.  Therefore to ensure that this covers out entire document we will call the angular module called market on the html.  We could jsut constrain it to a small section of our page if we wanted.  
 
-<html ng-app="food">
+```
+<html ng-app="market">
+```  
 
-Let's also add a title:
+Let's also flesh out the Html and add a heading:  
 
-<h1>Angular Lunch App</h1>
 
-Run, refresh and check nothing wrong in the console.
+```
+  <h1>Angular Leather Lane Market App</h1>
+```  
 
-Let's use some angular.  
 
-we can recocnise angualr in two ways - when we called it originally we had <html ng-app="stop">  - ng-  is the prefix for most of the methods in angular.
+Run, refresh and check nothing wrong in the console. Type angular in the console and you should get an object back.
 
-In erb we had tags such as <%=  %>   the equivalent in angualr is {{ }}
+*Let's use some angular!*
+
+
+We can recognise angular in two ways - when we called it originally we had <html ng-app="market">  - ng-  is the prefix for most of the functionaltiy in angular.  
+
+In erb we had tags such as <%=  %>   the equivalent in angular is {{ }}  
 
 Let's check it out:
 
 After the heading - try these one at a time:
 
-<p>{{ 4 + 7 }}</p>
-<p>{{ "hello" + " WDI" }}</p>
-<p>Hello has  {{"hello".length }} letters</p>
+```
+  <p>{{ 4 + 7 }}</p>  
+  <p>{{ "hello" + " WDI" }}</p>  
+  <p>Hello has  {{"hello".length }} letters</p>  
+```  
 
-delete that:
+Great - we can run some functionality right where we want it.  It's not hidden away in a js file.  We can see from the html what it should look like. It should also feel familar to erb.
 
-We can also call functions in the html:
+Delete those lines:
 
-<div>Click to add to basket</div>
+We can also call functions in the html:  
 
-<div>Your basket has {{ basket }} items in it</div>
+```  
+  <div>Click to add to basket</div>  
+  <div>Your basket has {{ basket }} items in it</div>
+```    
+  
+Note that angular is nice - basket isn't defined but it doesn't throw an error or much up the code.  Shortly we can intiate it with a value.  
 
-change the first line to:
-<div ng-click="basket = basket + 1">Click to add to basket</div>
+Change the first line to:  
+```
+  <div ng-click="basket = basket + 1">Click to add to basket</div>
+```   
 
-We can use the basket variable anywhere within our angualar app. Angular automatically updates it whereever it sees it.  Imagine trying to do the same with jquery.  
+We can use the basket variable anywhere within our angualar app. Angular automatically updates it whereever it sees it.  Imagine trying to do the same with jquery. You would have to get the variable, add something to it, and then grab an element from a page and set it's html.  Let's stick basket somewhere else just to see:  
+  
+```
+  <div>Using basket somewhere else: {{basket}}</div>
+```
+  
+Click on div a few times to see basket in both places updating. Great - and we have hardly written any javascript - angualar does allot of the heavy lifting for us.  
+  
+This is a basic example of using angular on the page. In much the same way as we have MVC framework in rails angular has something similair.   The html is the view and the curly brackets are similair to erb tags.  We are going to buld the modeling of the app into js file.  This just has to deal with modeling data and assigning it to variables.  It removes the need to play around with html in the js file.  Remember joining large parts of html together in the ajax lesson? this avoids that.  
 
-<div>Using basket somewhere else: {{basket}}</div>
-
-Click on div a few times to see basket in both places updating.
-
-This is a basic example of using angular on the page - we are going to move more of the logic and build a shop ordering and review site.
-
-Comment out everything below the header.
-
-ng-controller ties a specific set of functions to a part of the website.  Here we are going to list a number iterms for sale, their values, description and reviews.
-
-in the app.js file:
-
-app.controller('ShopController', function(){
-    this.meal = meal;
-  });
-
-
-meal = {
-  name: "burrito",
-  price: 5,
-  description:  "Meat and vegetables in a delicious wrap",
-  availiable: true
-}
+Delete the code we added below the h1 tags.  
 
 
+Leather Lane Angular App
+=============
 
-<div ng-controller="MarketController as market">
-    
-    <p>{{ market.meal.name}}
+Angular has an object called a controller that is used to control the data on your page.  Let's see how we set that up.
+We are going to set up some JSON data within our js file. Later on we will get data from an api or from our database.   
 
-</div>
+Our leather lane app is going to list a number of stalls, what they offer for sale, description and reviews.
 
+In the app.js file:
 
-We have lots of food availiable on leather lane.  So let's add a few more options and turn out selection into an array.
+```
+app.controller('MarketController', function(){  
+    this.stall = stall;  
+  });  
+```
 
- app.controller('MarketController', function(){
-    this.meals = meals;
-  });
+```
+stall = {  
+  name: "Burrito",  
+  price: 5,  
+  description:  "Meat and vegetables in a delicious wrap",  
+  availiable: true  
+}  
+```
 
-  meals = [
-  {
-    name: "burrito",
-    price: 5,
-    description:  "Meat and vegetables in a delicious wrap",
-    availiable: true
-  },
-  {
-    name: "burger",
-    price: 6.5,
-    description:  "Meat in a bun",
-    availiable: true
-  }
-]
+In the index.html
 
-In index.html add the following angular command - ng-repeat:
-
-<ul>
-    <h2>Selected meal details</h2>
-    <li ng-repeat="meal in market.meals">
-      {{ meal.name}} :  £{{meal.price}}
-    </li>
-  </ul>
-
-We will just show the name and the price.  When you click on it we want to show the details in another box.
-
-   <div ng-show="market.selectedMeal">
-    <h2>Selected meal details</h2>
-    <p>{{ market.selectedMeal.name }}</p>
-    <p>{{ market.selectedMeal.description }}</p>
-    <p>{{ market.selectedMeal.price }}</p>
+```
+  <div ng-controller="MarketController as market">  
+    <p>{{ market.stall.name}} </p> 
   </div>
+```
 
+Great - we can pull in the name for the meal.  But there are lots of options on leather lane.  Instead of one meal let's have lots of meals.  Here we want an array of meals.  We need to change the controller and the html.
 
-now we need a selected meal variable in our app.js. Initially we want it to be empty - however to test the view works we will set it to be the first meal. 
+In app.js:  
 
-app.controller('MarketController', function(){
-    this.meals = meals;
-    this.selectedMeal = meals[0];
-  });
+```
+ app.controller('MarketController', function(){  
+    this.stalls = stalls;  
+  });  
+```
 
-this is working so now we when we click on a meal in the list we want to go show the description.
+```
+  stalls = [  
+  {  
+    name: "Burrito",  
+    price: 5,  
+    description:  "Meat and vegetables in a delicious wrap",  
+    availiable: true  
+  },  
+  {  
+    name: "Burger",  
+    price: 6.5,  
+    description:  "Meat in a bun",  
+    availiable: true  
+  }  
+]  
+```  
 
-In jquery we needed to bind a function to a specific element.  In anguar we can jsut define this in the html:
+In index.html add the following angular command - ng-repeat. This is a bit like doing .each in ruby. delet the p tag line we had before and replace with the following:  
+```
+    <h2>Leather Lane Lunch Options</h2>  
+    <ul>  
+    <li ng-repeat="stall in market.stalls">  
+      {{ stall.name}} 
+    </li>  
+  </ul>  
+```
 
-<li ng-repeat="meal in market.meals" ng-click="market.selectMeal(meal)">
+Great - no need to add or append anything to the page.  The controller deals with the data.  The html page works out how to display the data.  All very rails like so far.  
+
+When we click on a meal we want to see more details about it - description, price and later on we will add reviews.  
+
+```
+  <h2>Selected Stall details</h2>  
+  <p>Name: {{ market.selectedStall.name }}</p>  
+  <p>Price: {{ market.selectedStall.description }}</p>  
+  <p>Description {{ market.selectedStall.price }}</p>   
+```
+
+But there's nothing there yet.  For now let's just set the selected meal to be one of the meals in our array.  
+
+```
+app.controller('MarketController', function(){  
+    this.stalls = stalls;  
+    this.selectedStall = stalls[0];  
+  });    
+```
+
+Great - our selected stall is now showing on the page!  Let's get it so that whichever stall we click on becomes the selected stall.  
+
+In jquery we needed to bind a function to a specific element (e.g. on click, on submit.  In angular we can jsut define this in the html:  
+
+```
+  <li ng-repeat="meal in market.meals" ng-click="market.selectMeal(meal)">
+```
 
 We now need to define the selectMeal(meal) function in angular.
 
+
 app.controller('MarketController', function(){
     this.meals = meals;
     this.selectedMeal = meals[0];
+
+
 
 ****
     this.selectMeal = function(meal) {

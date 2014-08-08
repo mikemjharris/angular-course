@@ -1,0 +1,29 @@
+<html ng-app="market">
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+  <script type="text/javascript" src="JS/app.js"></script>
+</head>
+<body>
+<h1>Angular Leather Lane Market App</h1>
+
+ <div ng-controller="MarketController as market">  
+    <h2>Leather Lane Lunch Options</h2>  
+    <ul>  
+    <li ng-repeat="stall in market.stalls">  
+      {{ stall.name}} 
+    </li>
+  </ul>
+
+
+  
+    <h2>Selected stall details</h2>  
+  <p>Name: {{ market.selectedStall.name }}</p>  
+  <p>Price: {{ market.selectedStall.description }}</p>  
+  <p>Description {{ market.selectedStall.price }}</p>   
+  
+
+</div>
+</body>
+</html>
