@@ -5,7 +5,9 @@
   <title>Angular Lunch App</title>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <script type="text/javascript" src="JS/angular.min.js"></script>
+  
+  <script src="http://code.angularjs.org/1.2.6/angular.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-animate.js"></script>
   <script type="text/javascript" src="JS/app.js"></script>
 </head>
 <body>
@@ -27,7 +29,8 @@
   <section>
     <ul>
     <h2 ng-class="">Lunch Options</h2>
-    <li ng-repeat="meal in market.meals" ng-click="market.selectMeal(meal)">
+    <input ng-model="search" />
+    <li class="animate" ng-repeat="meal in market.meals | filter:search" ng-click="market.selectMeal(meal)" >
       <span ng-class="{highlighted: meal === market.selectedMeal }">{{ meal.name}} :  £{{meal.price}}</span>
     </li>
     <li ng-show="market.new_meal" ng-click="market.selectMeal(new_meal)">
@@ -47,14 +50,14 @@
     </form>
   </section>
 
-  <div ng-show="market.selectedMeal">
+  <div class="animate-show" ng-show="market.selectedMeal">
     <h2>Selected meal details</h2>
     <p>{{ market.selectedMeal.name }}</p>
     <p>{{ market.selectedMeal.description }}</p>
     <p>{{ market.selectedMeal.price }}</p>
   </div>
 
-  <div ng-hide="market.selectedMeal">
+  <div animate-show ng-show="!market.selectedMeal">
     <h2 >Leather Lane</h2>
     <p>Leather lane is an awesome market in leather lane that has a wide variety of lucnh options.  Select an option from the left to see more details.</p>
   </div>

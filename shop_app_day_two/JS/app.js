@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('food', []);
+  var app = angular.module('food', ['ngAnimate']);
 
   app.controller('MarketController', function(){
     this.meals = meals;

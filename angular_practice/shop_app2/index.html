@@ -1,0 +1,54 @@
+<html ng-app="leatherLaneMarketApp">
+<head>
+  <title>Angular App</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-animate.js"></script>
+  <script type="text/javascript" src="JS/app.js"></script>
+  <link rel="stylesheet" href="CSS/style.css">
+  <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+
+</head>
+<body>
+
+  <h1>Angular Leather Lane Market App</h1>
+
+
+  <div ng-controller="MarketController as market">
+    <nav>
+      <h2>Stalls</h2>
+      <input ng-model="search" placeholder="search" />
+      <ul>
+        <li class="animate" ng-repeat="stall in market.stalls | filter : {name: search}" ng-click="market.selectStall(stall)">
+        {{ stall.name}}
+        </li>
+      </ul>
+    </nav>
+
+
+    <section>
+      <h2>Selected Stall details</h2> 
+      <table>
+        <tr> 
+          <td>Name:</td><td>{{ market.selectedStall.name }}</td>
+        </tr>
+        <tr>
+          <td>Price:</td><td> {{ market.selectedStall.price}}</td>  
+        </tr>
+        <tr>
+          <td>Description:</td><td> {{ market.selectedStall.description}}</td>
+        </tr>
+      </table>
+    </section>
+  </div>
+
+
+
+
+
+    <!-- <button ng-click="market.addToBasket()">Click to add to basket</button>
+    <div>Your basket has {{ market.basket }} items in it</div>
+    <p>{{ basket}}</p> -->
+  </div>
+
+</body>
+</html>

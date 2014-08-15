@@ -50,3 +50,51 @@ div div {
 .ng-invalid.ng-dirty {
   border: 1px solid red;
 }
+
+.animate-show {
+  line-height:20px;
+  opacity:1;
+  padding:10px;
+  border:1px solid black;
+  background:white;
+}
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+  line-height:0;
+  opacity:0;
+  padding:0 10px;
+}
+
+.check-element {
+  padding:10px;
+  border:1px solid black;
+  background:white;
+}
+
+.animate.ng-enter, 
+.animate.ng-leave
+{ 
+    transition: all 0.4s;
+    position: relative;
+    display: block;
+} 
+
+.animate.ng-enter.animate.ng-enter-active, 
+.animate.ng-leave {
+    opacity: 1;
+    top: 0;
+    height: 30px;
+}
+
+.animate.ng-leave.animate.ng-leave-active,
+.animate.ng-enter {
+    opacity: 0;
+    top: -50px;
+    height: 0px;
+}
