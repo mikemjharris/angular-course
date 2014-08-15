@@ -324,67 +324,129 @@ That section of html should read:
     <nav>
       <h2>Stalls</h2>
       <input ng-model="search" placeholder="search" />
-    <ul>
-
-      <li ng-repeat="stall in market.stalls | filter : {name: search}" ng-click="market.selectStall(stall)">
+      <ul>
+        <li ng-repeat="stall in market.stalls | filter : {name: search} | orderBy: name" ng-click="market.selectStall(stall)">
         {{ stall.name}}
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </nav>
 ```
 
-This filets by the name. If you want to search for any attribute within any part of the object you can do:
+This filters by the name. If you want to search for any attribute within any part of the object you can do:
 
 ```  
   ng-repeat="stall in market.stalls | filter : search"
 ``` 
 
 
-When we first navigate to the page we probably don't want to have any meal selected. 
+We probably want some more stalls so take some time to add a couple more stalls.
 
-so in app.js we can remove the initial this.selectedMeal
+Here's some more:
+```  
+    stalls = [  
+      {  
+        name: "Burrito",  
+        price: 5,  
+        description:  "Meat and vegetables in a delicious wrap",  
+        availiable: true  
+      },  
+      {  
+        name: "Pizza",  
+        price: 6.5,  
+        description:  "Cheese and meat and veg on some dough",  
+        availiable: true  
+      },
+      {
+        name: "Burger",
+        price: 8.5,
+        description: "Meat in a bun",
+        availiable: true
+      },
+      {
+        name: "Fallafel",
+        price: 4,
+        description: "Fallafel - that's all",
+        availiable: true
+      }
+```  
+
+Hmm - our data is in a strange order - we can easily up date this.  We can add an orderBy filter within the ng-repeat command. 
+```
+    <li class="animate" ng-repeat="stall in market.stalls | filter : {name: search} | orderBy: 'name'" ng-click="market.selectStall(stall)">
+```  
+We can also do things such as doing uppercase/lowercase/format currency on the output on screen - many of the things that you want to do with rails.
+
+
+App Landing Page
+=================
+
+
+When we first navigate to the page we probably don't want to have any meal selected.  
+
+So in app.js we can remove the initial this.selectedMeal  
+
+Check this still works when you click on things.  
+
+We can use ng-show. Add this to the section tag within the html.
+
+```  
+    <section ng-show="market.selectedStall">
+        <h2>Selected meal details</h2>
+```
   
-
-Check this still works when you click on things.
-
-We probably don't want to show the header if there is no meal there.
-
-We can use ng-show.
-
-<div ng-show="market.selectedMeal">
-    <h2>Selected meal details</h2>
-  
-if selectedMeal is not defined then this evaluates as false so the following div element isn't shown.
+if selectedMeal is not defined then this evaluates as false so the following section element isn't shown.
 
 Check it out in the browser.
 
 
 Let's show something else instead of the display selected meal.
 
-Ask class how what they think the opposite of show is.  
+What could be used instead of ng-show?
+
 Can either use ! symbol or ng-hide.
 
-<div ng-hide="market.selectedMeal">
-    <h2 >Leather Lane</h2>
-    <p>Leather lane is an awesome market in leather lane that has a wide variety of lucnh options.  Select an option from the left to see more details.</p>
-</div>
+```  
+    <section ng-hide="market.selectedStall">
+        <h2 >Leather Lane</h2>
+        <p>Leather lane is an awesome market in leather lane that has a wide variety of lucnh options.  Select an option from the left to see more details.</p>
+    </section>
+```  
+
+Great - we can show and hide a section depending on whether data is used or note.  If we were using jquery we would overwrite bits of html and have to listen for event handlers.
+
+Speaking of that - how should we highlight the meal we have clikced on on the left?  In jquery we would add an event handler and toggle a class on that element.   Let's see the angular way.
+
+
 
 As you can see this is super quick way of navigating around the page without having to send data to the server.
 
-***send them css link to make it look pretty***
 
-The other thing we use jquery to do is highlight and change the style.  Think how you would highlight the selected meal - you would bind jquery event to that and add a class when selected.
+Here we use some logic to set the class of the list item that is selected.
 
-Here we use some logic to set the class of the name given the span.
-<span ng-class="{highlighted: meal === market.selectedMeal }">{{ meal.name}} :  £{{meal.price}}</span>
+```  
+    ng-class="{highlighted: stall === market.selectedStall }"
+```
 
-What else do you have in a single page doc?  Different tabs.  Whithin the description.
-Checkout habitat:
-http://www.habitat.co.uk/pws/ProductDetails.ice?ProductID=241397
-http://www.futoncompany.co.uk/beds/single-stacking-bed.html
+Great - we can add classes to the page.  Again - nice and easy.  It's very obivous from looking at the html what is happening.  With jquery it was tough to know which elements would be changing.
+
+We have a great looking app,  with cool features.  We have written very little in the angular app.js file - we have leveraged most of the inbuilt functions of angular.
+
+
+Tabs
+=======
+
+What else do you have in a single page doc?  Different tabs.  
+Checkout these websties:
+
+<http://www.habitat.co.uk/pws/ProductDetails.ice?ProductID=241397>
+<http://www.futoncompany.co.uk/beds/single-stacking-bed.html>
 
 Different tabs for different products.
 
-LAB/homework - extend what we have done today and add tabs to the right hand menu box. Details, reviews, order.  
+LAB/homework 
+=============
+
+Extend what we have done today and add tabs to the right hand menu box. Details, reviews, order.  
 
 On the order page we should be able to use buttons to order a certain amount of a certain food.  Add another box on the screen that has our basket.  When we add meals to our basket they should be listed in the basket tab along with the current total value in our basket.
 

@@ -60,6 +60,12 @@ td:first-child{
   padding-right: 10px;
 }
 
+.highlighted {
+  background: red;
+}
+li.highlighted:hover {
+ background: red; 
+}
 
 li.ng-enter, 
 li.ng-leave
