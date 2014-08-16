@@ -1,0 +1,50 @@
+<h1>Angular Leather Lane Market App</h1>
+
+
+  <div ng-controller="MarketController as market">
+    <nav>
+      <h2>Stalls</h2>
+      <input ng-model="search" placeholder="search" />
+      <ul>
+        <li ng-repeat="stall in stalls | filter : {name: search} | orderBy: 'name'" ng-click="selectStall(stall)" ng-class="{highlighted: stall === selectedStall }">
+          {{ stall.name }}
+        </li>
+        <li class="new_item" ng-show="new_stall" ng-click="selectStall(new_stall)" ng-class="{highlighted: new_stall === selectedStall }">
+          {{ new_stall.name}}
+        </li>
+      </ul>
+
+      <h3>Add an item</h3>
+        <aside>reviewForm is {{stallForm.$pristine}}</aside>
+        <form name="stallForm" ng-submit="stallForm.$valid && addStall(new_stall)" novalidate>
+          <label>Name</label>
+          <input type="text" ng-model="new_stall.name" required /><br>
+          <label>Price</label>
+          <input type="number" ng-model="new_stall.price" min="1" max="10" required /><br>
+          <label>Description</label>
+          <textarea ng-model="new_stall.description"></textarea><br>
+          <button>Submit</button>
+        </form>
+
+    </nav>
+
+
+    <section  ng-show="selectedStall">
+      <h2>Selected Stall details</h2> 
+      <table>
+        <tr> 
+          <td>Name:</td><td>{{ selectedStall.name }}</td>
+        </tr>
+        <tr>
+          <td>Price:</td><td> {{ selectedStall.price}}</td>  
+        </tr>
+        <tr>
+          <td>Description:</td><td> {{ selectedStall.description}}</td>
+        </tr>
+      </table>
+    </section>
+
+     <section ng-hide="selectedStall">
+        <h2 >Leather Lane</h2>
+        <p>Leather lane is an awesome market in leather lane that has a wide variety of lunch options.  Select an option from the left to see more details.</p>
+    </section>
