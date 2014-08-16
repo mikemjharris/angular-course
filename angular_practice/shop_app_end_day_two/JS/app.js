@@ -1,7 +1,7 @@
 (function() {  
   var app = angular.module('leatherLaneMarketApp', ['ngAnimate']);  
 
-    app.controller('MarketController', function(){  
+    app.controller('MarketController', function($scope){  
         this.basket = 0;
          this.stalls = stalls;  
          // this.selectedStall = stalls[0];
@@ -10,6 +10,12 @@
         this.selectedStall = stall;
     }
 
+
+      this.addStall = function() {  
+        stalls.push(this.new_stall);  
+        this.new_stall = {}
+        $scope.stallForm.$setPristine();
+      }
 
       this.addToBasket = function() {
         this.basket ++
