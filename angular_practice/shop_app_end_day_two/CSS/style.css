@@ -1,0 +1,96 @@
+*{
+  box-sizing: border-box;
+  font-family: Verdana;
+}
+
+body {
+  padding: 20px;
+  text-align: center;
+}
+
+nav {
+  border: 1px solid black;
+  width: 300px;
+  border-radius: 5px;
+  padding: 10px 40px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px;
+  background: #dbf970;
+}
+
+ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+li {
+  transition: 0.2s all ;
+  padding: 5px;
+  border-radius: 5px;
+  height: 30px;
+}
+
+li:hover {
+  background: gray;
+  cursor: pointer;
+}
+input {
+  padding: 10px;
+  text-align: center;
+  width: 220px;
+  border-radius: 5px;
+}
+
+section {
+  background: #63add0;
+  border: 1px solid black;
+  width: 500px;
+  border-radius: 5px;
+  padding: 10px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px;
+}
+
+td:first-child{
+  text-align: right;
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.highlighted {
+  background: red;
+}
+li.highlighted:hover {
+ background: red; 
+}
+
+li.ng-enter, 
+li.ng-leave
+{ 
+    -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    position: relative;
+    display: block;
+} 
+
+li.ng-leave.ng-leave-active,
+li.ng-enter {
+  opacity: 0;
+    top: -50px;
+    height: 0px;
+ 
+}
+
+li.ng-enter.ng-enter-active, 
+li.ng-leave {
+   opacity: 1;
+    top: 0;
+    height: 30px;
+ 
+}
