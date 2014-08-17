@@ -16,6 +16,8 @@ If you want a dynamic website where individiual pieces of the page update withou
 Examples are 
 <www.gmail.com>
 <www.diy.com>
+<https://docs.angularjs.org/guide>
+
 
 Why do we (at GA) use angular?
 -----------------
@@ -408,7 +410,7 @@ Can either use ! symbol or ng-hide.
 ```  
     <section ng-hide="market.selectedStall">
         <h2 >Leather Lane</h2>
-        <p>Leather lane is an awesome market in leather lane that has a wide variety of lucnh options.  Select an option from the left to see more details.</p>
+        <p>Leather lane is an awesome market in leather lane that has a wide variety of lunch options.  Select an option from the left to see more details.</p>
     </section>
 ```  
 

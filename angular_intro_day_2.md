@@ -1,116 +1,175 @@
-Day two: using forms for validation.  Have split out connecting to a database into day three but I reckon it would fit in at the end of day 1.
+
+Angular Lunch App Continued: Day two  
+=============
+
+Adding data with a form
+-----------------------
 
 
-Next day using forms
-Add a review to each store. 
-Show two way data binding.
+We have our app but let's say we want to add items to our list. We will want to have a form.  Due to angular's two way data binding adding the data from the form to the page becomes almost trivial compared to using Jquery.  
 
-We have our app but let's say we want to add food to our list we want to have a form.  Today we will look at forms,  adding items using the form and also form validation.
+Inside the nav element but below the ul put the following code:
 
-Within the lunch section let's add a form.
+```  
+    <h3>Add an item</h3>
+      <form>
+        <label>Name</label>
+        <input type="text" /><br>
+        <label>Price</label>
+        <input type="number" /><br>
+        <label>Description</label>
+        <textarea></textarea><br>
+        <button>Submit</button>
+      </form>
+```
 
-  <h3>Add an item</h3>
-    <form>
-      Name<input type="text" /><br>
-      Price<input type="number" /><br>
-      Description<textarea></textarea><br>
-      <button>Submit</button>
-    </form>
+Great we have a form.  And we can type in the boxes. Not that even if I have text in the boxes I can still click on other parts of the page and the text does not disappear. This is why email etc. are single page web apps and why using a tool like angular is important.  
 
-Great we have a form.  And we can type in the boxes.
 
-HIGHLIGHT to students:
-Also note tha even if you have text in a box you can still move around the page!
 
-in angualar we can model something by using ng-model.  Let's show how it is used. We use the same keys as we use for the original meal.
+In angualar we can model something by using ng-model. We briefly saw this before with the search filter. We shall go into more detail here.  We are going model the stalls so need to have fields for each of the keys.
 
 ***TODO  -  do we need to set up a new controller??  ***
-
-<form>
-      Name<input type="text" ng-model="market.new_meal.name"><br>
-      Price<input type="number" ng-model="market.new_meal.price"><br>
-      Description<textarea ng-model="market.new_meal.description"></textarea><br>
+```   
+    <h3>Add an item</h3>
+    <form>
+      <label>Name</label>
+      <input type="text" ng-model="market.newStall.name"/><br>
+      <label>Price</label>
+      <input type="number" ng-model="market.newStall.price" /><br>
+      <label>Description</label>
+      <textarea ng-model="market.newStall.description"></textarea><br>
       <button>Submit</button>
     </form>
+```   
 
-With angualar we get two way data binding.  Let's show how this works. In the list of items let's copy the li elemtents but change the name inside to new_meal.  Get rid of ng-repeat and instead use ng-show.
 
-<li ng-show="new_meal" ng-click="market.selectMeal(new_meal)">
-      <span ng-class="{highlighted: market.new_meal === market.selectedMeal }">{{ new_meal.name}} :  £{{new_meal.price}}</span>
-</li>
 
-Now as we enter values into our text box they are dispalyed in the list. this highlights angular's two way data binding.  It is constantly looking out for changes in any variable.
+With angular we get two way data binding.  Let's show how this works. In the list of items let's copy the li elements but change the name inside to newStall.  Get rid of ng-repeat and instead use ng-show. We've also added a class of .new_item just 
 
-Now this is all well and good but we can only add one element to the list and it is linked to what is in the form box.  
+```  
+    <li class="new_item" ng-show="market.newStall" ng-click="market.selectStall(market.newStall)" ng-class="{highlighted: market.newStall === market.selectedStall }">
+          {{ market.newStall.name}}
+    </li>
+```  
+
+Now as we enter values into our text box they are dispalyed in the list. This highlights angular's two way data binding.  It is constantly looking out for changes in any variable. 
+
+Now this is all well and good but we can only add one element to the list and it is linked to what is in the form box. We want to add this to our stalls array. 
 
 We want to be able to add this to the list of elements in our array in out app.
 
-<form ng-submit="market.addMeal()">
+On our form let's run a function when it is submitted.  We can use angurlar's ng-submit:
 
+```   
+    <form ng-submit="market.addStall()">  
+```
 
-and in our app.js:
-  
-  this.addMeal = function() {
-      meals.push(this.new_meal);
-    }
+And in our app.js we need to define the addStall function
 
-Try this out.  Slightly annoying the new_meal is still there. How could we fix this?  
+```  
+    this.addStall = function() {  
+        stalls.push(this.newStall);    
+        this.newStall = {}  
+      }  
+```  
+This adds the new-stall to the stalls array.  It also clears out the form ready for the stall.  Have a play around! 
 
-in addMeal function let's set it to an empty hash:
-  
-   this.addMeal = function() {
-      meals.push(this.new_meal);
-      this.new_meal = {};
-    }
+This isn't getting saved in our app - we will need to linkinto the database at a later stage. For now we will work on user validations and highlighting errors using angualar.  
 
-You could imagine maybe setting a status message somewhere on the screen.
-** this.message = "Meal added" ** (need to add to page)
+Form Validations
+_________________
 
-This isn't getting saved in our app - we will need to linkinto the database later on today/tomorrow.
+In rails we would have to check once the form was submitted and do validations on the model side and send back an error.  Angular allows us to notify the user as they fill in the form on some of the validations making it a much easier 
 
-But first let's check user inputs on the form.  In rails we would have to check once the form was submitted.  We have seen some validations in javascript but angular provides some tools for this.
+HTML 5 also provides some validation - input a word into the price box and we can see the html validation.   However we want to provide out own validation. 
 
-HTML 5 also provides some validation - input a word into the price box and we can see the html validation.   However we want to provide out own validation.  So we  
+We add a novalidate term to the end of our form.  We also give it a name
 
-<form name="mealForm" ng-submit="market.addMeal(new_meal)" novalidate>
+```  
+    <form name="stallForm" ng-submit="market.addStall(newStall)" novalidate>  
+```  
 
 This turns off the html validation.
 
-We then require some fields - in this case name and price.
+We then require some fields - in this case name and price. We add required at the end of the html input element.
 
-Name<input type="text" ng-model="market.new_meal.name" required><br>
-Price<input type="number" ng-model="market.new_meal.price" required><br>
+``` 
+    <input type="text" ng-model="market.new_meal.name" required><br>
+    <input type="number" ng-model="market.new_meal.price" required><br>
+```
 
+Above the form let's add a message:
 
-<div>reviewForm is {{mealForm.$valid}}</div>
+```
+  <aside>reviewForm is {{stallForm.$valid}}</aside>
+```  
 
-SO we have turned off the html validation which only worked when the form was submitted.  However using angualr's data binding we are constantly checking whether the form is valid. Doesn't is annoy when you hit submit on a form and you get errorrs?  Here we can flag when the form is valid.  Lot's of options such as highlighting boxes etc....
+Try filling in the form - as we add fields the form becomes valid.  We have turned off the html validation which only worked when the form was submitted.  However using angular's data binding we are constantly checking whether the form is valid. Doesn't is annoy when you hit submit on a form and you get errors?  Here we can flag when the form is valid.  Lot's of options such as highlighting boxes etc....
 
-Nos we only want to run the addMeal function when the form is valid.
+Now we only want to run the addStall function when the form is valid.
 
-<form name="mealForm" ng-submit="mealForm.$valid && market.addMeal(new_meal)" novalidate>
+```  
+  <form name="stallForm" ng-submit="stallForm.$valid && market.addStall(newStall)" novalidate>
+```  
 
-Awesome - our form isn't submitting.  But that's pretty annoying.  Let's at least provide readback to the client as we go along.
+Test it out - input true data and see it getting added.  Try not entering a price and see how nothing gets added.
 
-Open up web inspector and check out the form and each input box.  The classes are:
+It's great that our form isn't submitting - but unless we provide feedback to the user this can get pretty annoying. 
+
+Open up web inspector and check out the form and each input box.  Look at how the classes on the boxes change as we change data within them.  The main classes are:
 
 ng-clean  ng-valid
 ng-dirty ng-invalid
 ng-dirty ng-valid
 
+
 we can set these as styles in our css:
-.ng-valid.ng-dirty {
-  border: 1px solid green;
-}
-.ng-invalid.ng-dirty {
-  border: 1px solid red;
-}
 
-the classes also show which of the validations is failing.  For example on price we can set min="1" max="10"
+```
+    .ng-valid.ng-dirty {
+      border: 2px solid green;
+    }
+    .ng-invalid.ng-dirty {
+      border: 2px solid #ff7373;
+    }
+```  
 
-Price<input type="number" ng-model="market.new_meal.price" min="1" max="10" required /><br>
+The classes also show which of the validations is failing.  For example on price we can set min="1" max="10"
 
-if the max is invalid the ng-invalid-max
+```  
+    <input type="number" ng-model="market.newStall.price" min="1" max="10" required /><br>
+```  
+if the max is invalid the ng-invalid-max.  
+
+However when we subtmit the form it is still "dirty". We want a clean, pristine form after we have submitted.
+
+$scope
+--------
+
+We are going to bring in a slightly more advanced feature which will allow us to clean up the form.It will also help us tidy up the code.  
+
+It felt a bit clumsy in our code to alway have market.  infront of every variable.  We had defined this section of code as the MarketController so using market repeatedly doesn't feel very DRY.
+
+In this case we are going to use $scope.  In our app.js for the controller line let's inlcude $scope. Like this:  
+
+```
+    app.controller('MarketController', function($scope){  
+```
+
+Now do a find and replace for this.  in your controller.  Replace with $scope.
+
+Now if we refresh our browser nothing is working.  We need to get market.  from infront of all our variables.  Find and replace market.  with a blank character.
+
+Check to see the app is working.  Yes the code is DRYer.  But we get extra access to elements on the page especially from within functions in our controller.
+
+Now let's clean that form.  Add this line within the addStall  function:  
+```
+    $scope.stallForm.$setPristine();
+```   
+
+Now when we click on the form and submit - afterwards the form "cleans" itself.
+
 
 
 ***More on validations here***
