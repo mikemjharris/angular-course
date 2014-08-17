@@ -58,9 +58,29 @@ Create a file within the javascript folder called app.js and copy our code acros
 ```  
 Finally let's copy the css from our old app and put it in the stalls.css.scss file.
 
-Now we just need to set up the rest of the view page
+Now we just need to set up the rest of the view page. 
 
-Great - let's run the server.  We can go to /stalls and we should get the exact same looking file as  before. (ngAnimate isn't included in rails - so we alse need to include the nganimate file in the header.)
+* If we have creeated directives we need to move these.*
+You can just place them in the public folder - perhaps on a folder called templates. 
+
+This works - however it doesn't take very long to go the rails way.
+
+Create a folder called templates inside app -> assets and move your file there.
+
+Rename your app.js to app.js.erb. At the top of the file referrence the template you are going to use.
+```  
+  #= depend_on_asset "new-stall-form.html"  
+``` 
+ Then change your templateUrl to use the asset path for the template
+```  
+  templateUrl: "<%= asset_path('new-stall-form.html') %>"
+```  
+
+Great - let's run the server.  We can go to /stalls and we should get the exact same looking file as  before. 
+
+ngAnimate isn't included in rails - so we alse need to include the nganimate file in the header. Just use the ajax link - it is possible to download the file but it can run into problems with the rails asset compilation
+
+
 
 
 Interacting with the server
