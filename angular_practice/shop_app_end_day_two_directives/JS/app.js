@@ -33,6 +33,13 @@
       }
     })
 
+    app.directive('stallList' , function() {
+      return {
+        restrict: 'E',
+        templateUrl: 'stall-list.html'
+      }
+    })
+
     
 
 stalls = [  

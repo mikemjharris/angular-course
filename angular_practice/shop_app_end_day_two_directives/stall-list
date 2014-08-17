@@ -1,0 +1,3 @@
+ <li ng-repeat="stall in stalls | filter : {name: search} | orderBy: 'name'" ng-click="selectStall(stall)" ng-class="{highlighted: stall === selectedStall }">
+          {{ stall.name }}
+</li>

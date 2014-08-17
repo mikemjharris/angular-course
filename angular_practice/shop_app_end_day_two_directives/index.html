@@ -18,9 +18,7 @@
       <h2>Stalls</h2>
       <input ng-model="search" placeholder="search" />
       <ul>
-        <li ng-repeat="stall in stalls | filter : {name: search} | orderBy: 'name'" ng-click="selectStall(stall)" ng-class="{highlighted: stall === selectedStall }">
-          {{ stall.name }}
-        </li>
+       <stall-list></stall-list>
         <li class="new_item" ng-show="new_stall" ng-click="selectStall(new_stall)" ng-class="{highlighted: new_stall === selectedStall }">
           {{ new_stall.name}}
         </li>
