@@ -1,0 +1,80 @@
+<html ng-app="leatherLaneMarketApp">
+<head>
+  <title>Angular App</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-animate.js"></script>
+  <script type="text/javascript" src="JS/app.js"></script>
+  <link rel="stylesheet" href="CSS/style.css">
+  <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+
+</head>
+<body>
+
+  <h1>Angular Leather Lane Market App</h1>
+
+
+  <div ng-controller="MarketController as market">
+    <nav>
+      <h2>Stalls</h2>
+      <input ng-model="search" placeholder="search" />
+      <ul>
+        <li ng-repeat="stall in stalls | filter : {name: search} | orderBy: 'name'" ng-click="selectStall(stall)" ng-class="{highlighted: stall === selectedStall }">
+          {{ stall.name }}
+        </li>
+        <li class="new_item" ng-show="new_stall" ng-click="selectStall(new_stall)" ng-class="{highlighted: new_stall === selectedStall }">
+          {{ new_stall.name}}
+        </li>
+      </ul>
+
+      <new-stall-form></new-stall-form>
+      <!-- <div class="new-stall-form"></div> -->
+      <!-- <div new-stall-form></div> -->
+    </nav>
+
+
+    <section  ng-show="selectedStall">
+      <h2>Selected Stall details</h2> 
+      <table>
+        <tr> 
+          <td>Name:</td><td>{{ selectedStall.name }}</td>
+        </tr>
+        <tr>
+          <td>Price:</td><td> {{ selectedStall.price}}</td>  
+        </tr>
+        <tr>
+          <td>Description:</td><td> {{ selectedStall.description}}</td>
+        </tr>
+      </table>
+    </section>
+
+     <section ng-hide="selectedStall">
+        <h2 >Leather Lane</h2>
+        <p>Leather lane is an awesome market in leather lane that has a wide variety of lunch options.  Select an option from the left to see more details.</p>
+    </section>
+<!-- 
+     <aside>
+      <h3>Add an item</h3>
+        <form>
+          <label>Name</label>
+          <input type="text" /><br>
+          <label>Price</label>
+          <input type="number" /><br>
+          <label>Description</label>
+          <textarea></textarea><br>
+          <button>Submit</button>
+        </form>
+    </aside> -->
+
+  </div>
+
+
+
+
+
+    <!-- <button ng-click="addToBasket()">Click to add to basket</button>
+    <div>Your basket has {{ basket }} items in it</div>
+    <p>{{ basket}}</p> -->
+  </div>
+
+</body>
+</html>

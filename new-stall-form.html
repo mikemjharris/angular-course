@@ -1,0 +1,11 @@
+      <h3>Add an item</h3>
+        <aside>reviewForm is {{stallForm.$pristine}}</aside>
+        <form name="stallForm" ng-submit="stallForm.$valid && addStall(new_stall)" novalidate>
+          <label>Name</label>
+          <input type="text" ng-model="new_stall.name" required /><br>
+          <label>Price</label>
+          <input type="number" ng-model="new_stall.price" min="1" max="10" required /><br>
+          <label>Description</label>
+          <textarea ng-model="new_stall.description"></textarea><br>
+          <button>Submit</button>
+        </form>

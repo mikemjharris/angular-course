@@ -26,6 +26,13 @@
 
   });  
 
+    app.directive('newStallForm', function() {
+      return {
+        restrict: 'E',
+        templateUrl: 'new-stall-form.html'
+      }
+    })
+
     
 
 stalls = [  

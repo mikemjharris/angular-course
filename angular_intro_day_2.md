@@ -172,22 +172,6 @@ Now when we click on the form and submit - afterwards the form "cleans" itself.
 
 
 
-***More on validations here***
-
-
-Afternoon: directives
-
-
-Homework:
-Add a review tag to each element.
-Build the review form to submit to the review.
-We want to store the review within the meals as an array of hashes.
-**need to think about this depending on rails api we build later**
-Add one validation
-Improve on the form validation.
-Bonus marks for using directives.
-
-
 
 
 
