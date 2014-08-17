@@ -140,11 +140,11 @@ li.ng-leave {
 }
 
 /*to be commented out then added later*/
-input.ng-valid.ng-dirty {
+form input.ng-valid.ng-dirty {
       /*border: 2px solid green;*/
       background: #78FA89;
     }
-input.ng-invalid.ng-dirty {
+form input.ng-invalid.ng-dirty {
       background: #ff7373;
       /*border: 2px solid #ff7373;*/
     }

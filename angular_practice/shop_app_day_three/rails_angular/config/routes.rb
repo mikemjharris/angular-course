@@ -1,7 +1,7 @@
 RailsAngular::Application.routes.draw do
   resources :stalls
-
-
+  root to: "static#index"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
