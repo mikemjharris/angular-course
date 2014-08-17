@@ -2,23 +2,23 @@
   var app = angular.module('leatherLaneMarketApp', ['ngAnimate']);  
 
     app.controller('MarketController', function($scope){  
-        this.basket = 0;
-         this.stalls = stalls;  
-         // this.selectedStall = stalls[0];
+        $scope.basket = 0;
+        $scope.stalls = stalls;  
+         // $scope.selectedStall = stalls[0];
 
-      this.selectStall = function(stall) {
-        this.selectedStall = stall;
+      $scope.selectStall = function(stall) {
+        $scope.selectedStall = stall;
     }
 
 
-      this.addStall = function() {  
-        stalls.push(this.new_stall);  
-        this.new_stall = {}
+      $scope.addStall = function() {  
+        $scope.stalls.push($scope.new_stall);  
+        $scope.new_stall = {}
         $scope.stallForm.$setPristine();
       }
 
-      this.addToBasket = function() {
-        this.basket ++
+      $scope.addToBasket = function() {
+        $scope.basket ++
     }
 
 
