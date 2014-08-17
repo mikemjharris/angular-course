@@ -7,7 +7,8 @@ gem 'rails', '3.2.18'
 
 gem 'sqlite3'
 gem 'angularjs-rails'
-
+# gem 'rack-cors'
+# gem 'angular_rails_csrf' 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

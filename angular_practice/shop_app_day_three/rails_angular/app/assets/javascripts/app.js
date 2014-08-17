@@ -2,9 +2,7 @@
   var app = angular.module('leatherLaneMarketApp', ['ngAnimate']);  
 
     app.controller('MarketController', function($http, $scope){  
-        $scope.basket = 0;
         $scope.stalls = [];  
-         // $scope.selectedStall = stalls[0];
         
       $http.get('http://localhost:3000/stalls.json').success(function(data){
           $scope.stalls = data
@@ -14,21 +12,36 @@
         $scope.selectedStall = stall;
     }
 
-
       $scope.addStall = function() {  
-        $scope.stalls.push($scope.new_stall);  
-    
-        $http.post('/stalls', { stall: $scope.new_stall });  
-     
-        $scope.new_stall = {}
-        $scope.stallForm.$setPristine();
+        $http.post('/stalls.json', { stall: $scope.newStall }).success(function(data){
+          $scope.newStall = false
+          $scope.stalls.push(data)
+          $scope.stallForm.$setPristine();
+        });  
       }
 
-      $scope.addToBasket = function() {
-        $scope.basket ++
+
+      $scope.deleteStall = function(stall) {
+        $http.delete('/stalls/' + stall.id +'.json').success(function(data) { 
+          $scope.stalls.splice( $scope.stalls.indexOf(stall), 1 );  
+          $scope.selectedStall = false
+        })
+      }
+
+      
+    $scope.setEditStall = function(stall) {
+      $scope.editStall = stall
     }
 
+    $scope.updateStall = function(stall) {
+      delete stall["created_at"]
+      delete stall["updated_at"]
+      $http.put('/stalls/' + stall.id + '.json', { stall: stall}).success(function(data) {
+        $scope.editStall = false
+      })
 
+    }
+ 
 
   });  
 
